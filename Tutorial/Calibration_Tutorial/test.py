@@ -78,7 +78,7 @@ class TestNode(Node):
         self.gripper.close_gripper()
         wait(1)
 
-        home=posj([0.0, 0.0, 90.0, 0.0, 90.0, 0.0])
+        home=posj([0.0, 0.0, 90.0, 0.0, 90.0, 90.0])
         movej(home, vel=VELOCITY, acc=ACC)  # move to initial position
         self.gripper.open_gripper()
         wait(1)
