@@ -72,13 +72,15 @@ class TestNode(Node):
 
     def pick_and_drop(self, x, y, z):
         current_pos = get_current_posx()[0]
+        z = z+10 # z 축 10mm 올려서 잡기
         pick_pos = posx([x, y, z, current_pos[3], current_pos[4], current_pos[5]])
         # TODO: Write pick and drop function
-        # movel(...)
+        movel(pick_pos, vel=VELOCITY, acc=ACC)
         self.gripper.close_gripper()
         wait(1)
-
-        # movej(...)  # move to initial position
+        
+        home = posj([0.0, 0.0, 90.0, 0.0, 90.0, 0.0])
+        movej(home, vel=VELOCITY, acc=ACC)
         self.gripper.open_gripper()
         wait(1)
 
