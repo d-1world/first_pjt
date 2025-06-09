@@ -1,1 +1,5 @@
-asdfdsafads
+0. 인터넷에 있는 원격 저장소(웹사이트 깃허브) 로컬 저장소(노트북)으로 불러오기: git pull origin {branch}
+1. 코드 작업 하기
+2. 로컬(노트북)에 임시 저장 포인트 만들기: git add .
+3. 로컬(노트북)에 완전 저장 포인트 만들기: git commit -m"설명쓰기"
+4. 원격(웹사이트)에 올리기: git push origin push {branch} = git push origin yohan

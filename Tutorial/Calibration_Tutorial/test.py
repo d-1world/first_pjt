@@ -74,11 +74,12 @@ class TestNode(Node):
         current_pos = get_current_posx()[0]
         pick_pos = posx([x, y, z, current_pos[3], current_pos[4], current_pos[5]])
         # TODO: Write pick and drop function
-        # movel(...)
+        movel(pick_pos, vel=VELOCITY, acc=ACC)
         self.gripper.close_gripper()
         wait(1)
 
-        # movej(...)  # move to initial position
+        home=posj([0.0, 0.0, 90.0, 0.0, 90.0, 0.0])
+        movej(home, vel=VELOCITY, acc=ACC)  # move to initial position
         self.gripper.open_gripper()
         wait(1)
 
