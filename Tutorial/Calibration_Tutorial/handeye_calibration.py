@@ -190,7 +190,7 @@ if __name__ == "__main__":
         R_checker2camera_list.append(T_checker2cam[:3, :3].copy())
         t_checker2camera_list.append(T_checker2cam[:3, 3].copy())
 
-
+## method 바꾸어 가며 실험하기
     # Hand-Eye 캘리브레이션 수행
     R_cam2gripper, t_cam2gripper = cv2.calibrateHandEye(
         R_gripper2base_list,
