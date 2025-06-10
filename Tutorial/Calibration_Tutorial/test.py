@@ -74,11 +74,11 @@ class TestNode(Node):
         current_pos = get_current_posx()[0]
         pick_pos = posx([x, y, z, current_pos[3], current_pos[4], current_pos[5]])
         # TODO: Write pick and drop function
-        movel(pick_pos)
+        movel(pick_pos, vel=VELOCITY, acc=ACC)
         self.gripper.close_gripper()
         wait(1)
 
-        movej(self.JReady)  # move to initial position
+        movej(self.JReady, vel=VELOCITY, acc=ACC)  # move to initial position
         self.gripper.open_gripper()
         wait(1)
 
