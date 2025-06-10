@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['Screwdriver']
+
+roboflow:
+  workspace: yolov5-dmrkh
+  project: myscr
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/yolov5-dmrkh/myscr/dataset/2
