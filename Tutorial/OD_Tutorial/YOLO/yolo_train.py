@@ -3,9 +3,9 @@ from ultralytics import YOLO
 
 class YoloTrain:
     def __init__(self, model_path):
-        self.model = YOLO(model_path)
+        self.model = YOLO(model_path)    
 
-    def train(self, data_path, is_absolute_path=False):
+    def train(self, data_path, is_absolute_path=False): # 상대경로를 절대경로로 변환
         if not is_absolute_path:
             import os
             data_path = os.path.abspath(data_path)
@@ -21,5 +21,5 @@ class YoloTrain:
 
 
 if __name__ == "__main__":
-    yolo_train = YoloTrain("yolov8n.yaml")
+    yolo_train = YoloTrain("yolov8n.yaml")      # yolo8n.pt => 사전 학습된 파일 사용
     yolo_train.train("Mechanical-tools-10000-3/data.yaml")

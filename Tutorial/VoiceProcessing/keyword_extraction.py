@@ -3,18 +3,20 @@ from dotenv import load_dotenv
 from langchain.chains import LLMChain
 from langchain.chat_models import ChatOpenAI
 import warnings
-
+from STT import STT
 
 from langchain.prompts import PromptTemplate
 
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
 class ExtractKeyword:
     def __init__(self):
         load_dotenv(dotenv_path=".env")
-        openai_api_key = os.getenv("OPENAI_API_KEY")
+        # openai_api_key = os.getenv("OPENAI_API_KEY")
         self.llm = ChatOpenAI(
             model="gpt-4o", temperature=0.5, openai_api_key=openai_api_key
         )
+# 도구 + 목적지 필요!!!
         prompt_content = """
             당신은 사용자의 문장에서 특정 도구와 목적지를 추출해야 합니다.
 
@@ -77,8 +79,73 @@ class ExtractKeyword:
 
 
 if __name__ == "__main__":
-    # stt = STT()
-    # output_message = stt.speech2text()
-    output_message = "못 밖는데 사용되는 1번 위치 넣어줘"
+    stt = STT(openai_api_key)
+    output_message = stt.speech2text()
+
+    # output_message = "못 밖는데 사용되는 1번 위치 넣어줘"
+    # output_message = "hammer와 screwdriver를 가져와서, 각각 pos2과 pos1에 둬"
+    # output_message = "나사를 조일 때 사용하는 물건을 pos2에 둬"
     extract_keyword = ExtractKeyword()
     keyword = extract_keyword.extract_keyword(output_message)
+
+# import os
+# from dotenv import load_dotenv
+# from langchain.chains import LLMChain
+# from langchain.chat_models import ChatOpenAI
+# import warnings
+# from STT import STT
+
+# from langchain.prompts import PromptTemplate
+
+# class ExtractKeyword:
+#     def __init__(self):
+#         load_dotenv(dotenv_path=".env")
+#         openai_api_key = os.getenv("OPENAI_API_KEY")
+        
+#         self.llm = ChatOpenAI(
+#             model="gpt-4o",
+#             temperature=0.5,
+#             openai_api_key=openai_api_key
+#         )
+
+#         # 날씨 질의 assistant용 프롬프트
+#         prompt_content = """
+#             너는 날씨에 대해 답변해주는 어시스턴트야.
+
+#             <목표>
+#             - 사용자의 질문에서 지역(도시) 이름을 찾아
+#             - 그 지역의 날씨 정보를 알려줘 (현재 날씨/기온/강수 유무 등)
+
+#             <출력 형식>
+#             - 다음 형식을 따르세요: "[지역]의 현재 날씨는 [날씨 요약]입니다."
+
+#             <예시>
+#             - 입력: "오늘 서울 날씨 어때?"  
+#             출력: "서울의 현재 날씨는 맑고 기온은 24도입니다."
+#             - 입력: "부산 비 오니?"  
+#             출력: "부산의 현재 날씨는 비가 내리고 있으며 기온은 18도입니다."
+
+#             <사용자 입력>
+#             "{user_input}"
+#         """
+
+#         self.prompt_template = PromptTemplate(
+#             input_variables=["user_input"], template=prompt_content
+#         )
+#         self.lang_chain = LLMChain(llm=self.llm, prompt=self.prompt_template)
+
+#     def extract_keyword(self, output_message):
+#         response = self.lang_chain.invoke({"user_input": output_message})
+#         answer = response["text"].strip()
+
+#         print(f"LLM 응답: {answer}")
+#         return answer
+
+
+# if __name__ == "__main__":
+#     openai_api_key = os.getenv("OPENAI_API_KEY")
+#     stt = STT(openai_api_key)
+#     output_message = stt.speech2text()
+
+#     extract_keyword = ExtractKeyword()
+#     keyword = extract_keyword.extract_keyword(output_message)
