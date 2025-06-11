@@ -11,8 +11,11 @@ from dotenv import load_dotenv
 
 
 load_dotenv(dotenv_path=os.path.join(".env"))
-openai_api_key = os.getenv("OPENAI_API_KEY")
 
+
+openai_api_key = os.getenv("OPENAI_API_KEY")
+print("-----")
+print("OpenAI API Key:", openai_api_key)
 
 class STT:
     def __init__(self, openai_api_key):
