@@ -3,6 +3,7 @@ from ultralytics import YOLO
 
 class YoloTrain:
     def __init__(self, model_path):
+        #medel path= yaml, pt 파일을 넣을 수 있다. yaml파일은 학습전 이미지 pt는 사전학습 모델 
         self.model = YOLO(model_path)
 
     def train(self, data_path, is_absolute_path=False):
